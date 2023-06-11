@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG MANAGEMENT</title>
+  <style>
+    /* Body Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #444444;
+    }
+
+    /* Heading Styles */
+    h1 {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 48px;
+      text-transform: uppercase;
+      color: #fe746a;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 25px;
+      text-transform: uppercase;
+      color: #333333;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      box-shadow: 0px 0px 10px #aaaaaa;
+    }
+
+    th,
+    td {
+      padding: 16px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #2c4d55;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    td {
+      font-size: 16px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #dddddd;
+    }
+
+    td:first-child {
+      font-weight: bold;
+    }
+
+    /* Link Styles */
+    a {
+      text-decoration: none;
+      color: #33a871;
+      font-weight: bold;
+    }
+
+    /* Button Styles */
+    button {
+      background-color: #f44336;
+      border-radius: 7%;
+      /* width: 70px; */
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #333333;
+      color: #ffffff;
+    }
+
+    /* Add New Blog Link */
+    .add-new-blog {
+      display: block;
+      margin-top: 60px;
+      border: 1px solid black;
+      width: 200px;
+      background-color: rgb(31, 80, 129);
+      text-align: center;
+      font-size: 20px;
+      color: #f1cccc;
+      /* text-transform: uppercase; */
+      /* font-weight: bold; */
+    }
+  </style>
+</head>
+
+<body>
+  <h1>BLOG MANAGEMENT</h1>
+
+  <h2>List of blogs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Functionality</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% blogs.forEach((blog, index)=> { %>
+        <tr>
+          <td>
+            <%= index + 1 %>
+          </td>
+          <td>
+            <%= blog.title %>
+          </td>
+          <td>
+            <%= blog.content %>
+          </td>
+          <td>
+            <a href="/blogs/<%= blog._id %>/edit">Edit</a>
+            <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" style="display:inline">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+    </tbody>
+  </table>
+
+<a href="/blogs/new" class="add-new-blog" style="margin-top: 10px;" >Add New Blog</a>
+</body>
+
+</html>

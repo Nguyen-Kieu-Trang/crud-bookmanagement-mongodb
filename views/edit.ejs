@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 40px;
+      color: #fa5e5e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    form:hover {
+      transform: scale(1.01);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      font-size: 16px;
+      color: #333;
+      transition: border-color 0.3s ease-in-out;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #009688;
+      box-shadow: 0 0 5px #009688;
+    }
+
+    button[type="submit"] {
+      background-color: #009688;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      text-transform: uppercase;
+      transition: background-color 0.2s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #00796b;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Edit Blog</h1>
+
+  <form action="/blogs/<%= blog._id %>?_method=PUT" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <label for="title" style="color: #009688;">Title:</label>
+    <input type="text" name="title" value="<%= blog.title %>" required>
+    <br>
+    <label for="content" style="color: #009688;">Content:</label>
+    <textarea name="content" required><%= blog.content %></textarea>
+    <br>
+    <button type="submit">Update Blog</button>
+  </form>
+</body>
+
+</html>
